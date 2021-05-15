@@ -5,9 +5,7 @@ import { MiddlewareFn } from "type-graphql";
 import { MyContext } from "../types/MyContext";
 
 export const isAuth: MiddlewareFn<MyContext> = async ({ context }, next) => {
-    const authHeader = context.req.headers.authorization?.startsWith("Bearer ")
-        ? context.req.headers.authorization
-        : null;
+    const authHeader = context.req.headers.authorization?.startsWith("Bearer ") && context.req.headers.authorization;
 
     try {
         if (!authHeader) {
